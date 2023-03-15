@@ -27,6 +27,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  convert: ^3.0.0
+  http: ^0.13.5
   quiver: ^3.2.1
   shared_preferences: ^2.0.18
   fluttertoast: ^8.2.1
