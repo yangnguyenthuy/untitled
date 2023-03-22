@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:convert/convert.dart';
 import 'package:quiver/strings.dart';
+import 'package:untitled/model/products.dart';
 
 class Utilities {
   String url = "http://192.168.0.100:3000/api/food";
 
   static List<Products> data = [];
 
-  Future <List<Products>> getProducis() async {
+  Future <List<Products>> getProducts() async {
     var res = await http.get(url);
       if (res.statusCode == 200) {
         var content = res.body;
@@ -28,35 +29,30 @@ class Utilities {
   }
 
   static String validateEmail(String value) {
-        if (value.isEmpty) {
-          return 'Please enter mail';
-        }
-        Pattern pattern = "aaaa";
-        RegExp regex = new RegExp(pattern);
-        f (regex hasMatch(value))
-        retum Enter Valid Ema’;
-        ise.
-        return nu;
-        }
+    if (value.isEmpty) {
+      return 'Please enter mail';
+    }
+    Pattern pattern = r'^(([^<>()[]\_,;:\s@"]+(_[^<>()[]\.,;:\s@"]+)")|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}_[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if(!regex.hasMatch(value))
+      return "Enter Valid Email";
+    else
+      return null;
+  }
 
-        static Sting valkatePassword Sting valve)
-        valuesEmpty)(
+  static String validatePassword (String value) {
+    if (value.isEmpty) {
+      return 'Please enter password';
+    }
+    if(value.length < 8)
+      return "Password should be more than 8 characters";
+    else
+      return null;
+  }
 
-        retum ‘Please enter password’;
-
-        )
-
-        Halve length < 8
-
-        retum ‘Password should be more than 8 characters ';
-        )
-        )
-
-        static String conformPassword{ Sting value, String value2){
-        ifflequalsignoreCase(vaiue, value2)
-        retum “Conform password invalid";
-
-        )
-
+  static String conformPassword (String value, String value2) {
+    if(!equalsIgnoreCase(value, value2))
+      return "Conform Password Invalid";
+  }
 }
 
