@@ -1,17 +1,18 @@
 import 'dart:js';
 
 import 'package:flutter/widgets.dart';
-//import 'package:untitled/'; //productpage
-//import 'package:untitled/'; //homepage
+import 'package:untitled/detail/productpage.dart';
+import 'package:untitled/homepage/homepage.dart';
 import 'package:untitled/signup/signuppage.dart';
 import 'package:untitled/splashpage.dart';
 import 'package:untitled/signin/signinpage.dart';
+import 'package:untitled/cart/cartpage.dart';
 
-final Map<String, Widget> routes = {
+final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => SplashPage(),
   SignInPage.routeName: (context) => SignInPage(),
   SignUpPage.routeName: (context) => SignUpPage(),
-  //SplashPage.routeName: (context) => SplashPage(),
-  //SplashPage.routeName: (context) => SplashPage(),
-  //SplashPage.routeName: (context) => SplashPage(),
+  HomePage.routeName: (context) => HomePage(),
+  ProductPage.routeName: (context) => ProductPage(),
+  //CartPa.routeName: (context) => SplashPage(),
 };

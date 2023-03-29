@@ -2,5 +2,5 @@ class User {
   String username;
   String password;
 
-  User({this.username, this.password});
+  User({required this.username, required this.password});
 }

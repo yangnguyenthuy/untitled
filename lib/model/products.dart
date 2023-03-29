@@ -7,7 +7,7 @@ class Products{
   String image;
   double price;
 
-  Products({this.id, this.title, this.description, this.image, this.price});
+  Products({required this.id, required this.title, required this.description, required this.image, required this.price});
 
   static List<Products> init() {
     List<Products> data = [
@@ -15,7 +15,7 @@ class Products{
       Products(id: 1,
           title: "Bread",
           description: "Founded as a bakery brand in Singapore in 2000 and listed on the",
-          image: "assets/foodsfc_ black_coffee.png”",
+          image: "assets/dish.png",
           price: 8.0),
       Products(id: 2,
           title: "Coffee",
@@ -46,17 +46,17 @@ class Products{
       Products(id: 1,
           title: "Bread",
           description: "Founded as a bakery brand in Singapore in 2000 and listed on the",
-          image: "assets/foodsfc_ black_coffee.png”",
+          image: "assets/foods/fc_ black_coffee.png”",
           price: 8.0),
       Products(id: 2,
           title: "Coffee",
           description: "Coffee is a brewed drink prepared from roasted coffeø beans, the",
-          image: "assets/foodsfc_black_coffee.png",
+          image: "assets/foods/fc_black_coffee.png",
           price: 8.0),
       Products(id: 3,
           title: "Tea",
           description: "Coffee is a brewed drink prepared from roasted coffeø beans, the",
-          image: "assets/foodsfc_black_coffee.png",
+          image: "assets/foods/fc_black_coffee.png",
           price: 8.0),
       Products(id: 4,
           title: "Bread",

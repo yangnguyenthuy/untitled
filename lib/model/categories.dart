@@ -5,7 +5,7 @@ class Categories{
   String title;
   String image;
 
-  Categories({this.id,this.title,this.image});
+  Categories({required this.id,required this.title,required this.image});
 
 
   static List<Categories> init(){
