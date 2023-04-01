@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:fluter_foodnow_app/model/user.darf';
-//import 'package:fluter_foodnow_app/model/utilities.darf';
+import 'package:untitled/model/user.dart';
+import 'package:untitled/model/Utilities.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quiver/strings.dart';
 
@@ -16,14 +16,14 @@ class _SignUpFormState extends State<SignUpForm> {
   final password = TextEditingController();
   final conform = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>;
-  var _passKey = GlobalKey<FormFieldState>;
+  final _formKey = GlobalKey<FormState>();
+  var _passKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
 
     return Form(
-        //key: _formKey,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -40,14 +40,16 @@ class _SignUpFormState extends State<SignUpForm> {
                 width: MediaQuery.of(context).size.width,
                 child: RaisedButton(
                   onPressed: () {
-                    //if(_formKey.currentState.validate()){
-                      //Navigator.pop(context, User(username: email.text, password: conform.text))
-                  }
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.pop(context,
+                          User(username: email.text, password: conform.text));
+                    }
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+                  color: Colors.green,
+                  child: Text("Continue", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color:Colors.white),),
                 ),
               ),
-              //shape: RoundedRectangleBorder(BorderRadius: BorderRadius.circular(10)),
-              //color: Colors.green,
-              //child: Text("Continue", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color:Colors.white),),),),
               SizedBox(height: 30,),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -103,10 +105,10 @@ TextFormField emailTextFormField() {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: Icon(Icons.email_outlined)
       ),
-      //validator: Utilities.validateEmail,
+      //validator: Utilities.validateEmail(),
       onSaved:(value){
         setState(() {
-            //email.text = value;
+            email.text = value.toString();
         });
       },
   );
@@ -114,7 +116,7 @@ TextFormField emailTextFormField() {
 
 TextFormField passwordTextFormField() {
   return TextFormField(
-      //key: _passKey,
+      key: _passKey,
       controller: password,
       obscureText: true,
       keyboardType: TextInputType.number,
@@ -125,7 +127,7 @@ TextFormField passwordTextFormField() {
         suffixIcon: Icon(Icons.lock_outline)
       ),
       validator: (passwordKey){
-        //return Utilities.validatePassword(passwordKey);
+        return Utilities.validatePassword(passwordKey.toString());
       }
   );
 }
@@ -142,12 +144,12 @@ TextFormField conformTextFormField() {
         suffixIcon: Icon(Icons.lock_outline)
     ),
     validator: (conformPassword) {
-      //var pass = _passKey.currentState.value;
-      //return Utilities.corformPassword(conformPassword, pass);
+      var pass = _passKey.currentState?.value;
+      return Utilities.conformPassword(conformPassword!, pass);
     },
     onSaved: (value){
       setState((){
-        //conform.text = value ;
+        conform.text = value.toString();
       });
 
     },

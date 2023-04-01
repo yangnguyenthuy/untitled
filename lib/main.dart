@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/cart/cartpage.dart';
 import 'package:untitled/detail/productpage.dart';
 import 'package:untitled/homepage/homepage.dart';
+import 'package:untitled/model/cart.dart';
 import 'package:untitled/signin/components/signin_form.dart';
 import 'package:untitled/signin/signinpage.dart';
 import 'package:untitled/splashpage.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),//const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SignInPage(),//const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

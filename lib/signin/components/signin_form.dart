@@ -4,9 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/signup/signuppage.dart';
-//import 'package:flutter_foodnow_app/homepage/homepage.dart';
-//import 'package:flutter_foodnow_app/model/user.dart';
-//import 'package:flutter_foodnow_app/model/utilities.dart';
+import 'package:untitled/model/user.dart';
+import 'package:untitled/model/Utilities.dart';
+import 'package:untitled/homepage/homepage.dart';
+import 'package:untitled/model/routes.dart';
 
 class SigninForm extends StatefulWidget {
   @override
@@ -26,8 +27,8 @@ class _SigninFormState extends State<SigninForm> {
   void initState() {
   // TODO: implement initState
   super.initState();
-  //fToast = FToast();
-  //fToast.init(context);
+  var fToast = FToast();
+  fToast.init(context);
   _getData();
   }
 
@@ -72,11 +73,11 @@ class _SigninFormState extends State<SigninForm> {
                   children: [
                     TextFormField(
                       validator: (value) {
-                        //return Utilities.validatePassword(value);
+                        return Utilities.validatePassword(value.toString());
                       },
                       onSaved: (_value) {
                         setState(() {
-                          //username.text = _value;
+                          username.text = _value.toString();
                         });
                       },
                       controller: username,
@@ -89,7 +90,7 @@ class _SigninFormState extends State<SigninForm> {
                       TextFormField(
                         controller: password,
                         validator: (value){
-                          //return Utilities.validatePassword(value);
+                          return Utilities.validatePassword(value.toString());
                       },
                       keyboardType: TextInputType.number,
                       obscureText: true,
@@ -114,12 +115,12 @@ class _SigninFormState extends State<SigninForm> {
                               prefs.remove('check');
                             }
 
-                            //Navigator.pushNamed(context, HomePage.routeName);
+                            //Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomePage()));
+                            Navigator.pushNamed(context, HomePage.routeName);
                           },
 
                           shape: RoundedRectangleBorder (borderRadius: BorderRadius.circular(10)),
                           color: Colors.green,
-
                           child: Text("Continue", style: TextStyle(fontSize: 18, fontWeight: FontWeight. bold, color: Colors. white),),),
                       ),
                       SizedBox(height: 5,),
@@ -136,7 +137,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
-                              //child: SvgPicture.assets("assets/icons/facebook-2.svg"),
+                              child: SvgPicture.asset("assets/icons/facebook-2.svg"),
                             ),
                             Container(
                               height: 40,
@@ -147,7 +148,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
-                              //child: SvgPicture.assets("assets/icons/google-icon.svg"),
+                              child: SvgPicture.asset("assets/icons/google-icon.svg"),
                             ),
                             Container(
                               height: 40,
@@ -157,7 +158,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle
                               ),
-                              //child: SvgPicture.assets("assets/icons/twitter.svg"),
+                              child: SvgPicture.asset("assets/icons/twitter.svg"),
                             )
                           ],
                         ),
@@ -170,8 +171,8 @@ class _SigninFormState extends State<SigninForm> {
                           GestureDetector(
                             onTap: () async{
                               final result = await Navigator.pushNamed(context, SignUpPage.routeName);
-                              //User user = result;
-                              //username.text = user.username;
+                              User user = User(username: username.text, password: password.text);
+                              username.text = user.username;
                             },
                             child: Text("SignUp", style: TextStyle(color: Colors.redAccent, fontSize: 14),),)
                         ],
