@@ -19,6 +19,12 @@ class _BodyState extends State<Body> {
   List<Products> productsResult = <Products>[];
   late TextEditingController textEditingController;
 
+  void initState() {
+    super.initState();
+    _tags.addAll(["food","categories","bread"]);
+    textEditingController = new TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
