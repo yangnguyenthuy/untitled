@@ -137,7 +137,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
-                              child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                              //child: SvgPicture.asset("assets/icons/facebook-2.svg"),
                             ),
                             Container(
                               height: 40,
@@ -148,7 +148,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
-                              child: SvgPicture.asset("assets/icons/google-icon.svg"),
+                              //child: SvgPicture.asset("assets/icons/google-icon.svg"),
                             ),
                             Container(
                               height: 40,
@@ -158,7 +158,7 @@ class _SigninFormState extends State<SigninForm> {
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle
                               ),
-                              child: SvgPicture.asset("assets/icons/twitter.svg"),
+                              //child: SvgPicture.asset("assets/icons/twitter.svg"),
                             )
                           ],
                         ),

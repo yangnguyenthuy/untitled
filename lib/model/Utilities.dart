@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:convert/convert.dart';
 import 'package:quiver/strings.dart';
+import 'package:untitled/api_connection/api_connection.dart';
 import 'package:untitled/model/products.dart';
+import 'package:untitled/model/user.dart';
 
 class Utilities {
-  String url = "http://192.168.0.100:3000/api/food";
+  String url = "http://172.20.243.198/food_app_api";
 
   static List<Products> data = [];
 

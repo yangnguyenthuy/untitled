@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled/model/user.dart';
 import 'package:untitled/model/Utilities.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quiver/strings.dart';
+import 'package:http/http.dart' as http;
+import 'package:untitled/api_connection/api_connection.dart';
 
 class SignUpForm extends StatefulWidget {
 
@@ -12,6 +17,7 @@ _SignUpFormState createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+
   var email = TextEditingController();
   final password = TextEditingController();
   final conform = TextEditingController();
@@ -39,11 +45,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 height: 50,
                 width: MediaQuery.of(context).size.width,
                 child: RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                  onPressed: () => { registerAndSaveUser(),
+                    /*if (_formKey.currentState!.validate()) {
                       Navigator.pop(context,
                           User(username: email.text, password: conform.text));
-                    }
+                    }*/
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
                   color: Colors.green,
@@ -64,7 +70,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         color: Color(0xFFF5F6F9),
                         shape: BoxShape.circle
                       ),
-                      child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                      //child: SvgPicture.asset("assets/icons/facebook-2.svg"),
                     ),
                     Container(
                       height: 40,
@@ -75,7 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         color: Color(0xFFF5F6F9),
                         shape: BoxShape.circle
                       ),
-                      child: SvgPicture.asset("assets/icons/google-icon.svg"),
+                      //child: SvgPicture.asset("assets/icons/google-icon.svg"),
                     ),
                     Container(
                       height: 40,
@@ -85,7 +91,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         color: Color(0xFFF5F6F9),
                         shape: BoxShape.circle
                       ),
-                      child: SvgPicture.asset("assets/icons/twitter.svg"),
+                      //child: SvgPicture.asset("assets/icons/twitter.svg"),
                     ),
                   ],
                 ),
@@ -156,5 +162,35 @@ TextFormField conformTextFormField() {
 
   );
 }
+  registerAndSaveUser() async {
+    User userModel = User(username: email.text, password: password.text);
+    try
+    {
+      Fluttertoast.showToast(msg: userModel.password);
+      var res = await http.post(
+          Uri.parse(API.signUp),
+          body: userModel.toJson(),
+      );
+
+      if(res.statusCode == 200)
+      {
+        Fluttertoast.showToast(msg: "SignUp ");
+        var resBodyOfSignUp = jsonDecode(res.body);
+        if(resBodyOfSignUp['success'] == true)
+        {
+          Fluttertoast.showToast(msg: "SignUp Success");
+        }
+        else
+        {
+          Fluttertoast.showToast(msg: "SignUp Failed");
+        }
+      }
+    }
+    catch(e)
+    {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
 
 }
