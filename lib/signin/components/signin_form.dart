@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,6 +10,7 @@ import 'package:untitled/model/user.dart';
 import 'package:untitled/model/Utilities.dart';
 import 'package:untitled/homepage/homepage.dart';
 import 'package:untitled/model/routes.dart';
+import 'package:http/http.dart' as http;
 
 class SigninForm extends StatefulWidget {
   @override
@@ -38,6 +41,39 @@ class _SigninFormState extends State<SigninForm> {
       username.text = prefs.getString('username');
       password.text = prefs.getString('password');
       _value = prefs.getBool('check');   
+    }
+  }
+
+  Future<void> signIn() async {
+    var url = "http://172.20.161.172:81/food_app_api/user/signin.php";
+    try
+    {
+      var res = await http.post(
+        Uri.parse(url),
+        body: {
+          "username": username.text,
+          "password": password.text,
+        },
+      );
+
+      if(res.statusCode == 200)
+      {
+        var resBodyOfSignUp = jsonDecode(res.body);
+        if(resBodyOfSignUp == "Success")
+        {
+          Fluttertoast.showToast(msg: "SignIn Success");
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomePage()));
+        }
+        else
+        {
+          Fluttertoast.showToast(msg: "SignIn Failed");
+        }
+      }
+    }
+    catch(e)
+    {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -105,18 +141,8 @@ class _SigninFormState extends State<SigninForm> {
                         height: 50,
                         width: MediaQuery.of(context).size.width,
                         child: RaisedButton(
-                          onPressed: () async {
-                            if(_value){
-                              prefs = await SharedPreferences.getInstance();
-                              prefs.setString('username', username.text);
-                              prefs.setString('password', password.text);
-                              prefs.setBool('check', _value);
-                            } else {
-                              prefs.remove('check');
-                            }
-
-                            //Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomePage()));
-                            Navigator.pushNamed(context, HomePage.routeName);
+                          onPressed: () {
+                            signIn();
                           },
 
                           shape: RoundedRectangleBorder (borderRadius: BorderRadius.circular(10)),
@@ -169,10 +195,8 @@ class _SigninFormState extends State<SigninForm> {
                         children: [
                           Text("Don't have a account", style: TextStyle(color: Colors.green, fontSize: 14),),
                           GestureDetector(
-                            onTap: () async{
-                              final result = await Navigator.pushNamed(context, SignUpPage.routeName);
-                              User user = User(username: username.text, password: password.text);
-                              username.text = user.username;
+                            onTap: () async {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUpPage()));
                             },
                             child: Text("SignUp", style: TextStyle(color: Colors.redAccent, fontSize: 14),),)
                         ],

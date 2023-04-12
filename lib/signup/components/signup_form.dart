@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:quiver/strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled/api_connection/api_connection.dart';
+import 'package:untitled/signin/signinpage.dart';
 
 class SignUpForm extends StatefulWidget {
 
@@ -162,23 +163,26 @@ TextFormField conformTextFormField() {
 
   );
 }
-  registerAndSaveUser() async {
-    User userModel = User(username: email.text, password: password.text);
+  Future<void> registerAndSaveUser() async {
+    var url = "http://172.20.161.172:81/food_app_api/user/signup.php";
     try
     {
-      Fluttertoast.showToast(msg: userModel.password);
       var res = await http.post(
-          Uri.parse(API.signUp),
-          body: userModel.toJson(),
+          Uri.parse(url),
+          body: {
+            "username": email.text,
+            "password": password.text,
+            "reenter": conform.text,
+          },
       );
 
       if(res.statusCode == 200)
       {
-        Fluttertoast.showToast(msg: "SignUp ");
         var resBodyOfSignUp = jsonDecode(res.body);
-        if(resBodyOfSignUp['success'] == true)
+        if(resBodyOfSignUp == "Success")
         {
           Fluttertoast.showToast(msg: "SignUp Success");
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignInPage()));
         }
         else
         {

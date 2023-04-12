@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:untitled/cart/cartpage.dart';
+import 'package:untitled/cart/cartpage.dart';
+import 'package:untitled/search/searchpage.dart';
 
 
 class HomeHeader extends StatelessWidget {
@@ -14,13 +15,13 @@ class HomeHeader extends StatelessWidget {
                 filled: true,
                 fillColor: Colors.white,
                 hintText:"Search product",
-                prefixIcon: Icon(Icons.search)
+                prefixIcon: Icon(Icons.search),
             ),
           ),
         ),
         GestureDetector(
           onTap:(){
-            //Navigator.pushNamed(context,CartPage.routeName);
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => CartPage()));
           },
           child:Container(
               height:40,

@@ -58,5 +58,9 @@ class Utilities {
       return "Conform Password Invalid";
     return "";
   }
+
+  static List<Products> find (String value) {
+      return <Products>[];
+  }
 }
 
