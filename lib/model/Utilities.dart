@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:convert/convert.dart';
 import 'package:quiver/strings.dart';
@@ -60,7 +61,12 @@ class Utilities {
   }
 
   static List<Products> find (String value) {
-      return <Products>[];
+    List<Products> products = Products.init();
+    List<Products> results = [];
+    for(Products pro in products) {
+      if(pro.title == value) results.add(pro);
+    }
+    return results;
   }
 }
 

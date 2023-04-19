@@ -30,7 +30,7 @@ class Body extends StatelessWidget{
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.bottomLeft,
-      child: Image.asset("dish_2.png"),
+      //child: Image.asset("dish.png"),
     );
   }
 }

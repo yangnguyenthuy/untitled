@@ -1,21 +1,21 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:untitled/homepage/components/fragment/favorite_fragment.dart';
 import 'package:untitled/model/products.dart';
 import 'package:untitled/model/Utilities.dart';
 import 'package:flutter_tags/flutter_tags.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class Body extends StatefulWidget {
   List<Products> dataProduct = <Products>[];
-// Body({this.dataProduct});
+  //Body({required this.dataProduct});
   @override
   _BodyState createState() => _BodyState();
 }
 class _BodyState extends State<Body> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  List<String> _tags=[];
+  final List<String> _tags=[];
   List<Products> products = Products.init();
   List<Products> productsResult = <Products>[];
   late TextEditingController textEditingController;
@@ -51,22 +51,22 @@ class _BodyState extends State<Body> {
             itemCount: _tags
                 .length
             ,
-            // itemBuilder: (index){
-            //   // print(index.toString());
-            //   return ItemTags
-            //     (
-            //     index: index,
-            //     title: _tags[index],
-            //     onPressed: (item) {
-            //       setState(() {
-            //         widget
-            //             .dataProduct.clear();
-            //         widget
-            //             .dataProduct.addAll(Utilities.find(item.title));
-            //       });
-            //     },
-            //   );
-            // },
+            itemBuilder: (index){
+              print(index.toString());
+              return ItemTags
+                (
+                index: index,
+                title: _tags[index],
+                onPressed: (item) {
+                  setState(() {
+                    widget
+                        .dataProduct.clear();
+                    widget
+                        .dataProduct.addAll(Utilities.find(item.title));
+                  });
+                },
+              );
+            },
           ),
         ],
       ),
@@ -103,7 +103,7 @@ class _BodyState extends State<Body> {
             ),
             onChanged: (value){
               setState(() {
-                if(value.isEmpty){
+                if(textEditingController.text.isEmpty){
                   widget.dataProduct = <Products>[];
                   return;
                 }

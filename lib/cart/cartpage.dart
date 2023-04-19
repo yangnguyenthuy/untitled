@@ -20,7 +20,7 @@ class CartPage extends StatelessWidget {
         title: Text("Cart Details"),
       ),
 
-      //body: Body(),
+      body: Body(),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:untitled/detail/productpage.dart';
 import 'package:untitled/model/products.dart';
 import 'package:untitled/model/utilities.dart';
+import 'package:untitled/model/routes.dart';
 
 class ProductPopular extends StatelessWidget{
   final products = Products.init();

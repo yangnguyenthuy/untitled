@@ -11,6 +11,7 @@ class HomeHeader extends StatelessWidget {
       children: [
         Expanded(
           child: TextField(
+            onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (_) => SearchPage()));},
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,

@@ -3,6 +3,7 @@ import 'package:untitled/cart/cartpage.dart';
 import 'package:untitled/detail/productpage.dart';
 import 'package:untitled/homepage/homepage.dart';
 import 'package:untitled/model/cart.dart';
+import 'package:untitled/search/searchpage.dart';
 import 'package:untitled/signin/components/signin_form.dart';
 import 'package:untitled/signin/signinpage.dart';
 import 'package:untitled/splashpage.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SignInPage(),//const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SignInPage(),
+      routes: {
+        '/details': (context) => ProductPage(),
+      },//const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
