@@ -34,9 +34,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SignInPage(),
+      home: SplashPage(),
       routes: {
         '/details': (context) => ProductPage(),
+        '/sign_in': (context) => SignInPage(),
       },//const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

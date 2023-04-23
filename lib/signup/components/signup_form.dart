@@ -164,11 +164,11 @@ TextFormField conformTextFormField() {
   );
 }
   Future<void> registerAndSaveUser() async {
-    var url = "http://172.20.78.178:81/food_app_api/user/signup.php";
+    //var url = "http://172.20.78.178:81/food_app_api/user/signup.php";
     try
     {
       var res = await http.post(
-          Uri.parse(url),
+          Uri.parse(API.signUp),
           body: {
             "username": email.text,
             "password": password.text,

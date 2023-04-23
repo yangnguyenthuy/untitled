@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/api_connection/api_connection.dart';
 import 'package:untitled/signup/signuppage.dart';
 import 'package:untitled/model/user.dart';
 import 'package:untitled/model/Utilities.dart';
@@ -45,11 +46,11 @@ class _SigninFormState extends State<SigninForm> {
   }
 
   Future<void> signIn() async {
-    var url = "http://172.20.78.178:81/food_app_api/user/signin.php";
+    //var url = "http://172.20.78.178:81/food_app_api/user/signin.php";
     try
     {
       var res = await http.post(
-        Uri.parse(url),
+        Uri.parse(API.signIn),
         body: {
           "username": username.text,
           "password": password.text,
