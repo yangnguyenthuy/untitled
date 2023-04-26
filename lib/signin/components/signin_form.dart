@@ -33,7 +33,7 @@ class _SigninFormState extends State<SigninForm> {
   super.initState();
   var fToast = FToast();
   fToast.init(context);
-  _getData();
+  _checkLogin();
   }
 
   _getData() async {
@@ -42,6 +42,15 @@ class _SigninFormState extends State<SigninForm> {
       username.text = prefs.getString('username');
       password.text = prefs.getString('password');
       _value = prefs.getBool('check');   
+    }
+  }
+
+  _checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var name = prefs.getString('name');
+    if(name != null) {
+    Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext ctx) => HomePage()));
     }
   }
 
@@ -59,6 +68,8 @@ class _SigninFormState extends State<SigninForm> {
 
       if(res.statusCode == 200)
       {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('name', username.text);
         var resBodyOfSignUp = jsonDecode(res.body);
         if(resBodyOfSignUp == "Success")
         {
