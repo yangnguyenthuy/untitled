@@ -26,7 +26,7 @@ class CheckOutCart extends StatelessWidget {
       var resBodyOfSignUp = jsonDecode(res.body);
       if(resBodyOfSignUp == "Success")
       {
-          Fluttertoast.showToast(msg: "SignUp Success");
+          Fluttertoast.showToast(msg: "Checkout Success");
           cartdetails.clear();
       }
   }
