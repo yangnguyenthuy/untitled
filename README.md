@@ -16,3 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 API Driver: https://drive.google.com/drive/folders/1-VzkPlTBJlLkzOOERI5ZI7LQomFpIIKD
+
+Fix API: https://stackoverflow.com/questions/65630743/how-to-solve-flutter-web-api-cors-error-only-with-dart-code
